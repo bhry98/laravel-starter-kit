@@ -1,0 +1,38 @@
+{
+  "core": {
+    "locations": {
+      "❌ [GET] /countries": "get all countries",
+      "❌ [GET] /countries/{country_code}": "get country details",
+      "❌ [GET] /countries/{country_code}/governorates": "get all governorates in this country",
+      "❌ [GET] /countries/{country_code}/cities": "get all cities in this country",
+      "❌ [GET] /governorates": "get all governorates",
+      "❌ [GET] /governorates/{governorate_code}": "get governorate details",
+      "❌ [GET] /governorates/{country_code}/cities": "get all cities in this governorate",
+      "❌ [GET] /cities": "get all cities",
+      "❌ [GET] /cities/{city_code}": "get cities details"
+    },
+    "enums": {
+      "❌ [GET] /{enum_parent_code}": "get all enums child by parent code",
+      "❌ [GET] /usersGenders": "get all genders for user",
+      "❌ [GET] /usersTypes": "get all types for user"
+    },
+    "system": {
+      "❌ [GET] /currentLocal": "get current system lang based on user auth [if no user auth based on default system lang]",
+      "❌ [GET] /locals": "get all system locals based on locals table in admin panel"
+    }
+  },
+  "auth": {
+    "❌ [POST] /login": "login via [ login_via value from config file]",
+    "❌ [POST] /registration": "registration via [ login_via value from config file] is require input",
+    "❌ [GET|AUTH] /logout": "logout auth user",
+    "❌ [POST] /resetPassword": "reset password via [ reset_password_via value from config file] to send otp",
+    "❌ [POST] /verifyOtp": "verify otp return bool [if return true user login success and must reset password ]"
+  },
+  "users": {
+    "❌ [GET|AUTH] /me": "get my profile",
+    "❌ [PUT|AUTH] /me": "update my profile",
+    "❌ [POST|AUTH] /changePassword": "update my password",
+    "❌ [GET|AUTH] /notifications": "get my notifications",
+    "❌ [PUT|AUTH] /seenNotifications": "set notifications seen by notification code"
+  }
+}

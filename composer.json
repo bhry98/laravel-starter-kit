@@ -1,0 +1,35 @@
+{
+  "name": "bhry98/laravel-starter-kit",
+  "description": "laravel starter kit package by Bhr Abdelrahman",
+  "require": {
+    "php": ">=8.2",
+    "laravel/framework": ">=11.0",
+    "laravel/sanctum": ">=4.0.0",
+    "illuminate/console": "*",
+    "spatie/laravel-translation-loader": "^2.8"
+  },
+  "license": "MIT",
+  "autoload": {
+    "files": [
+      "src/Helpers/responses.php",
+      "src/Helpers/assets.php"
+    ],
+    "psr-4": {
+      "Bhry98\\LaravelStarterKit\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bhry98\\LaravelStarterKit\\Bhry98StarterKitServiceProvider"
+      ]
+    },
+    "minimum-stability": "stable"
+  },
+  "authors": [
+    {
+      "name": "Bhr Abdelrahman",
+      "email": "bhrabdelrahman8@gmail.com"
+    }
+  ]
+}
