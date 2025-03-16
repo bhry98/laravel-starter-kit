@@ -18,9 +18,9 @@ return new class extends Migration {
             table: CoreSessionsPersonalAccessTokenModel::TABLE_NAME,
             callback: function (Blueprint $table) {
                 $table->id();
-                $table->morphs('tokenable');
+                $table->morphs('tokenable',indexName: "core_sessions_personal_access_tokenable");
                 $table->string('name');
-                $table->string('token', 64)->unique();
+                $table->string('token', 64)->unique(indexName: "core_sessions_access_token");
                 $table->text('abilities')->nullable();
                 $table->timestamp('last_used_at')->nullable();
                 $table->timestamp('expires_at')->nullable();

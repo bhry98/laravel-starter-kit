@@ -1,7 +1,7 @@
 <?php
 
 use Bhry98\LaravelStarterKit\Models\core\localizations\{
-    CoreLocalizations
+    CoreLocalizationsModel
 };
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::disableForeignKeyConstraints();
         Schema::create(
-            table: CoreLocalizations::TABLE_NAME,
+            table: CoreLocalizationsModel::TABLE_NAME,
             callback: function (Blueprint $table) {
                 $table->id();
                 $table->string(column: 'relation');
@@ -30,7 +30,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists(table: CoreLocalizations::TABLE_NAME);
+        Schema::dropIfExists(table: CoreLocalizationsModel::TABLE_NAME);
         Schema::enableForeignKeyConstraints();
     }
 };

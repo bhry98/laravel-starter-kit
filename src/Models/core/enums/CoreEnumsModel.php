@@ -2,6 +2,7 @@
 
 namespace Bhry98\LaravelStarterKit\Models\core\enums;
 
+use Bhry98\LaravelStarterKit\Models\core\localizations\CoreLocalizationsModel;
 use Bhry98\LaravelStarterKit\Models\users\UsersCoreUsersModel;
 use Bhry98\LaravelStarterKit\Traits\HasLocalization;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -32,12 +33,12 @@ class CoreEnumsModel extends Model
 
     protected $fillable = [
         'code',
+        'column_name',
         'relation',
         'api_access',
         'can_delete',
         'parent_id'
     ];
-
     protected $hidden = [];
 
     protected function casts(): array
@@ -76,13 +77,13 @@ class CoreEnumsModel extends Model
 //        );
 //    }
 //
-//    public function translations(): HasMany
-//    {
-//        return $this->hasMany(
-//            related: CoreTranslation::class,
-//            foreignKey: 'reference_id',
-//            localKey: 'id');
-//    }
+    public function translations(): HasMany
+    {
+        return $this->hasMany(
+            related: CoreLocalizationsModel::class,
+            foreignKey: 'reference_id',
+            localKey: 'id');
+    }
 //
 //    public function defaultTranslation(): HasOne
 //    {

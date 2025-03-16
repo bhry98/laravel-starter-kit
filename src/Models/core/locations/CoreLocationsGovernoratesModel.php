@@ -2,6 +2,7 @@
 
 namespace Bhry98\LaravelStarterKit\Models\core\locations;
 
+use Bhry98\LaravelStarterKit\Models\users\UsersCoreUsersModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -11,7 +12,7 @@ class CoreLocationsGovernoratesModel extends Model
     use SoftDeletes;
 
     // start env
-    const TABLE_NAME = "bhry98_users_core_governorates";
+    const TABLE_NAME = "core_locations_governorates";
     const RELATIONS = [
         "country",
     ];
@@ -66,5 +67,4 @@ class CoreLocationsGovernoratesModel extends Model
         }
         return $code;
     }
-
 }

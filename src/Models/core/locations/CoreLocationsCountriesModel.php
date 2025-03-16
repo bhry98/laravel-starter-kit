@@ -2,6 +2,7 @@
 
 namespace Bhry98\LaravelStarterKit\Models\core\locations;
 
+use Bhry98\LaravelStarterKit\Models\users\UsersCoreUsersModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -9,9 +10,12 @@ use Illuminate\Support\Str;
 class CoreLocationsCountriesModel extends Model
 {
     use SoftDeletes;
-
+//
+//    protected static array $localizable = [
+//        'name'
+//    ];
     // start env
-    const TABLE_NAME = "bhry98_users_core_countries";
+    const TABLE_NAME = "core_locations_countries";
     const RELATIONS = [];
     // start table
     protected $table = self::TABLE_NAME;
@@ -38,7 +42,8 @@ class CoreLocationsCountriesModel extends Model
             foreignKey: "country_id",
             localKey: "id");
     }
- public function cities(): \Illuminate\Database\Eloquent\Relations\HasMany
+
+    public function cities(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(
             related: CoreLocationsCitiesModel::class,

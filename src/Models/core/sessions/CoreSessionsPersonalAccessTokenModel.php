@@ -8,7 +8,7 @@ use Laravel\Sanctum\PersonalAccessToken;
 class CoreSessionsPersonalAccessTokenModel extends PersonalAccessToken
 {
     // start env
-    const TABLE_NAME = "core_sessions_tokens";
+    const TABLE_NAME = "core_sessions_personal_access_tokens";
     // start table
     protected $table = self::TABLE_NAME;
 }

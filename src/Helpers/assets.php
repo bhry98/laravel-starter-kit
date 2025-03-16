@@ -13,3 +13,13 @@ if (!function_exists(function: 'bhry98_date_formatted')) {
     }
 }
 
+if (!function_exists(function: 'bhry98_app_settings')) {
+    function bhry98_app_settings($key)
+    {
+        //        // check if key not exists in config key return null
+        //        if (!in_array($key, array_keys(array: config(key: "bhry98-starter.app_settings.auto_login_after_registration") ?? []))) return null;
+        // check if setting value exists in setting table return value
+        // else return default value from config file
+        return config(key: "bhry98-starter.app_settings.{$key}");
+    }
+}

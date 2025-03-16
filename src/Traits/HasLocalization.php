@@ -1,5 +1,7 @@
 <?php
+
 namespace Bhry98\LaravelStarterKit\Traits;
+
 use Bhry98\LaravelStarterKit\Models\core\localizations\CoreLocalizationsModel;
 use Illuminate\Support\Facades\App;
 
@@ -19,19 +21,16 @@ trait HasLocalization
             ->where('locale', $locale)
             ->value('value') ?? $this->attributes[$column] ?? null;
     }
-
     /**
      * Set a localized value for a given column.
      */
-    public function setLocalized($column, $value, $locale = null)
+    public function setLocalized($column, $value, $locale = null): void
     {
         $locale = $locale ?? App::getLocale();
-
         CoreLocalizationsModel::updateOrCreate(
             [
                 'relation' => static::class,
-                'column_nuse App\Models\Traits\HasLocalization;
-ame' => $column,
+                'column_name' => $column,
                 'reference_id' => $this->id,
                 'locale' => $locale,
             ],

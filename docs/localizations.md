@@ -1,5 +1,6 @@
+go to intro.md file [🔗](../intro.md)
 # Localizations
-## In this starter you kan use HasLocalization trait in your model 
+## In this starter you can use HasLocalization trait in your model 
 
 ---
 ### **1. Apply the Trait in Your Model**
@@ -30,15 +31,15 @@ $product = ProductsModel::find(50);
 $product = ProductsModel::create(['code'=>"pr-50"]);
 
 // Add localized values
-$enum->name = "Age";
-$enum->setLocalized('name', 'العمر', 'ar');
+$enum->name = "Ball"; // to add with default system lang key
+$enum->setLocalized('name', 'كرة', 'ar'); // to add with custom lang key 
 
 // Retrieve localized values
 App::setLocale('ar');
-echo $enum->name; // العمر
+echo $enum->name; // كرة
 
 App::setLocale('en');
-echo $enum->name; // Age
+echo $enum->name; // Ball
 
 // Delete localized value
 $enum->deleteLocalized('name', 'ar');
@@ -48,6 +49,7 @@ $enum->forceDeleteLocalized('name', 'ar');
 ```
 
 ---
+
 
 ### **Why This Works Well**
 ✅ Automatically detects and retrieves localized values  

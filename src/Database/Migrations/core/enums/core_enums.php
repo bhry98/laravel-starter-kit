@@ -3,14 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use  Bhry98\LaravelStarterKit\Models\core\enums\CoreEnums;
+use  Bhry98\LaravelStarterKit\Models\core\enums\CoreEnumsModel;
 return new class extends Migration {
 
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
         Schema::create(
-            table: CoreEnums::TABLE_NAME,
+            table: CoreEnumsModel::TABLE_NAME,
             callback: function (Blueprint $table) {
                 $table->id();
                 $table->uuid(column: 'code')->unique();
@@ -21,7 +21,7 @@ return new class extends Migration {
                 $table->foreignId(column: 'parent_id')
                     ->nullable()
                     ->references(column: 'id')
-                    ->on(table: CoreEnums::TABLE_NAME)
+                    ->on(table: CoreEnumsModel::TABLE_NAME)
                     ->cascadeOnDelete()
                     ->cascadeOnUpdate();
                 $table->softDeletes();
@@ -32,7 +32,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists(table: CoreEnums::TABLE_NAME);
+        Schema::dropIfExists(table: CoreEnumsModel::TABLE_NAME);
         Schema::enableForeignKeyConstraints();
     }
 };

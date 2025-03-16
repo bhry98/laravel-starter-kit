@@ -1,15 +1,13 @@
 <?php
 
-namespace Bhry98\LaravelUsersCore\Database\Seeders;
+namespace Bhry98\LaravelStarterKit\Database\Seeders\core;
 
-use Bhry98\LaravelUsersCore\Models\CoreLocationsCitiesModel;
-use Bhry98\LaravelUsersCore\Models\CoreLocationsCountriesModel;
-use Bhry98\LaravelUsersCore\Models\CoreLocationsGovernoratesModel;
-use Bhry98\LaravelUsersCore\Models\UsersCoreTypesModel;
-use Bhry98\LaravelUsersCore\Services\UsersCoreTypesService;
+use Bhry98\LaravelStarterKit\Models\core\locations\CoreLocationsCitiesModel;
+use Bhry98\LaravelStarterKit\Models\core\locations\CoreLocationsCountriesModel;
+use Bhry98\LaravelStarterKit\Models\core\locations\CoreLocationsGovernoratesModel;
 use Illuminate\Database\Seeder;
 
-class UsersCoreCountriesSeeder extends Seeder
+class CoreLocationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +15,7 @@ class UsersCoreCountriesSeeder extends Seeder
     public function run(): void
     {
         $ds = DIRECTORY_SEPARATOR;
-        $countriesArray = include __DIR__ . "{$ds}..{$ds}Data{$ds}countries.php";
+        $countriesArray = include __DIR__ . "{$ds}..{$ds}..{$ds}Data{$ds}countries.php";
         foreach ($countriesArray ?? [] as $country) {
             $fixData = [
                 "country_code" => $country["code"],
@@ -46,7 +44,7 @@ class UsersCoreCountriesSeeder extends Seeder
     static function addEgyptGovernorates($egypt_id): void
     {
         $ds = DIRECTORY_SEPARATOR;
-        $egyptGovernoratesArray = include __DIR__ . "{$ds}..{$ds}Data{$ds}governorates{$ds}egypt.php";
+        $egyptGovernoratesArray = include __DIR__ . "{$ds}..{$ds}..{$ds}Data{$ds}governorates{$ds}egypt.php";
         foreach ($egyptGovernoratesArray ?? [] as $governorate) {
             $fixData = [
                 "name" => $governorate["name"],
@@ -74,7 +72,7 @@ class UsersCoreCountriesSeeder extends Seeder
     static function addEgyptCairoCities($egypt_id, $cairo_id): void
     {
         $ds = DIRECTORY_SEPARATOR;
-        $egyptCairoCitiesArray = include __DIR__ . "{$ds}..{$ds}Data{$ds}cities{$ds}egypt{$ds}cairo.php";
+        $egyptCairoCitiesArray = include __DIR__ . "{$ds}..{$ds}..{$ds}Data{$ds}cities{$ds}egypt{$ds}cairo.php";
         foreach ($egyptCairoCitiesArray ?? [] as $city) {
             $fixData = [
                 "name" => $city["name"],
@@ -95,7 +93,7 @@ class UsersCoreCountriesSeeder extends Seeder
     static function addEgyptGizaCities($egypt_id, $giza_id): void
     {
         $ds = DIRECTORY_SEPARATOR;
-        $egyptCairoCitiesArray = include __DIR__ . "{$ds}..{$ds}Data{$ds}cities{$ds}egypt{$ds}giza.php";
+        $egyptCairoCitiesArray = include __DIR__ . "{$ds}..{$ds}..{$ds}Data{$ds}cities{$ds}egypt{$ds}giza.php";
         foreach ($egyptCairoCitiesArray ?? [] as $city) {
             $fixData = [
                 "name" => $city["name"],
@@ -116,7 +114,7 @@ class UsersCoreCountriesSeeder extends Seeder
     static function addEgyptAlexandriaCities($egypt_id, $alexandria_id): void
     {
         $ds = DIRECTORY_SEPARATOR;
-        $egyptCairoCitiesArray = include __DIR__ . "{$ds}..{$ds}Data{$ds}cities{$ds}egypt{$ds}alexandria.php";
+        $egyptCairoCitiesArray = include __DIR__ . "{$ds}..{$ds}..{$ds}Data{$ds}cities{$ds}egypt{$ds}alexandria.php";
         foreach ($egyptCairoCitiesArray ?? [] as $city) {
             $fixData = [
                 "name" => $city["name"],
@@ -131,7 +129,7 @@ class UsersCoreCountriesSeeder extends Seeder
     static function addSaudiArabiaGovernorates($saudi_arabia_id): void
     {
         $ds = DIRECTORY_SEPARATOR;
-        $egyptGovernoratesArray = include __DIR__ . "{$ds}..{$ds}Data{$ds}governorates{$ds}saudi_arabia.php";
+        $egyptGovernoratesArray = include __DIR__ . "{$ds}..{$ds}..{$ds}Data{$ds}governorates{$ds}saudi_arabia.php";
         foreach ($egyptGovernoratesArray ?? [] as $governorate) {
             $fixData = [
                 "name" => $governorate["name"],

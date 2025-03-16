@@ -7,7 +7,7 @@ use Bhry98\LaravelStarterKit\Models\users\{
     UsersCoreUsersModel,
 };
 use Bhry98\LaravelStarterKit\Models\core\enums\{
-    CoreEnums
+    CoreEnumsModel
 };
 use Bhry98\LaravelStarterKit\Models\core\locations\{
     CoreLocationsCountriesModel,
@@ -29,12 +29,12 @@ return new class extends Migration {
                     ->unique();
                 $table->foreignId(column: 'type_id')
                     ->references(column: 'id')
-                    ->on(table: CoreEnums::TABLE_NAME)
+                    ->on(table: CoreEnumsModel::TABLE_NAME)
                     ->cascadeOnUpdate()
                     ->cascadeOnDelete();
                 $table->foreignId(column: 'gender_id')
                     ->references(column: 'id')
-                    ->on(table: CoreEnums::TABLE_NAME)
+                    ->on(table: CoreEnumsModel::TABLE_NAME)
                     ->cascadeOnUpdate()
                     ->cascadeOnDelete();
                 $table->foreignId(column: 'country_id')

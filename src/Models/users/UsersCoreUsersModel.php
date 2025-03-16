@@ -2,7 +2,7 @@
 
 namespace Bhry98\LaravelStarterKit\Models\users;
 
-use Bhry98\LaravelStarterKit\Models\core\enums\CoreEnums;
+use Bhry98\LaravelStarterKit\Models\core\enums\CoreEnumsModel;
 use Bhry98\LaravelStarterKit\Models\core\locations\CoreLocationsCountriesModel;
 use Bhry98\LaravelStarterKit\Models\core\locations\CoreLocationsGovernoratesModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -59,7 +59,7 @@ class UsersCoreUsersModel extends Authentication
     public function type(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(
-            related: CoreEnums::class,
+            related: CoreEnumsModel::class,
             foreignKey: "id",
             localKey: "type_id");
     }
