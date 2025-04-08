@@ -1,5 +1,6 @@
 <?php
 
+use Bhry98\LaravelStarterKit\Http\Middlewares\GlobalResponseLocale;
 use Bhry98\LaravelStarterKit\Http\Controllers\core\locations\{
     CoreLocationsCountriesController,
     CoreLocationsGovernoratesController,
@@ -9,12 +10,16 @@ use Bhry98\LaravelStarterKit\Http\Controllers\core\enums\{
     CoreEnumsController
 };
 use Bhry98\LaravelStarterKit\Http\Controllers\users\{
-    UsersAuthenticationController
+    UsersAuthenticationController,
+    UsersManagementController
+};
+use Bhry98\LaravelStarterKit\Http\Middlewares\users\{
+    UserMustChangePasswordToAccess
 };
 use Illuminate\Support\Facades\Route;
 
 Route::prefix(config(key: 'bhry98-starter.apis.prefix', default: "api"))
-    ->middleware(config(key: 'bhry98-starter.apis.middleware', default: ["api", \Bhry98\LaravelStarterKit\Http\Middlewares\GlobalResponseLocale::class]))
+    ->middleware(config(key: 'bhry98-starter.apis.middleware', default: ["api", GlobalResponseLocale::class]))
     ->name(config(key: 'bhry98-starter.apis.namespace', default: "api") . ".")
     ->group(function () {
         // helpers
@@ -66,12 +71,33 @@ Route::prefix(config(key: 'bhry98-starter.apis.prefix', default: "api"))
                     });
             });
         // auth routes
-        Route::prefix('auth')
-            ->name('auth.')
+        Route::prefix(config(key: 'bhry98-starter.apis.helpers.prefix', default: 'auth'))
+            ->middleware(config(key: 'bhry98-starter.apis.helpers.middleware', default: ["api"]))
+            ->name(config(key: 'bhry98-starter.apis.helpers.namespace', default: "auth") . ".")
             ->group(function () {
                 Route::post('/registration', [UsersAuthenticationController::class, 'registration'])
                     ->name(name: 'registration'); // without auth
                 Route::post('/login', [UsersAuthenticationController::class, 'login'])
                     ->name(name: 'login'); // without auth
+                Route::post('/forgotPassword', [UsersAuthenticationController::class, 'forgotPassword'])
+                    ->name(name: 'forgot-password'); // without auth
+                Route::post('/verifyOtp', [UsersAuthenticationController::class, 'verifyOtp'])
+                    ->name(name: 'verify-otp'); // without auth
+                Route::get('/logout', [UsersAuthenticationController::class, 'logout'])
+                    ->middleware(['auth:sanctum'])
+                    ->name(name: 'logout'); // without auth
+                Route::put('/updatePassword', [UsersAuthenticationController::class, 'updatePassword'])
+                    ->middleware(['auth:sanctum'])
+                    ->name(name: 'updatePassword')
+                    ->withoutMiddleware(UserMustChangePasswordToAccess::class);// with auth
+            });
+        // users routes
+        Route::prefix(config(key: 'bhry98-starter.apis.users.prefix', default: 'users'))
+            ->middleware(config(key: 'bhry98-starter.apis.users.middleware', default: ["api", "auth:sanctum", UserMustChangePasswordToAccess::class]))
+            ->name(config(key: 'bhry98-starter.apis.users.namespace', default: "users") . ".")
+            ->group(function () {
+                Route::get('/me', [UsersManagementController::class, 'me'])
+                    ->name(name: 'me')
+                    ->withoutMiddleware(UserMustChangePasswordToAccess::class);
             });
     });

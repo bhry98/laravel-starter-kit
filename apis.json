@@ -17,22 +17,27 @@
       "✅ [GET] /usersTypes": "get all types for user"
     },
     "system": {
-      "❌ [GET] /currentLocal": "get current system lang based on user auth [if no user auth based on default system lang]",
-      "❌ [GET] /locals": "get all system locals based on locals table in admin panel"
+      "❌ [GET] /currentLocale": "get current system lang based on user auth [if no user auth based on default system lang]",
+      "❌ [GET] /locales": "get all system locales based on locales table in admin panel"
     }
   },
   "auth": {
     "✅ [POST] /login": "login via [ login_via value from config file]",
     "✅ [POST] /registration": "registration via [ login_via value from config file] is require input",
-    "❌ [GET|AUTH] /logout": "logout auth user",
-    "❌ [POST] /resetPassword": "reset password via [ reset_password_via value from config file] to send otp",
-    "❌ [POST] /verifyOtp": "verify otp return bool [if return true user login success and must reset password ]"
+    "✅ [GET|AUTH] /logout": "logout auth user",
+    "✅ [POST] /forgotPassword": "reset password via [ reset_password_via value from config file] to send otp",
+    "✅ [POST] /verifyOtp": "verify otp return bool [if return true user login success and must reset password ]",
+    "✅ [POST] /updatePassword": "update password with token from verify otp endpoint"
   },
   "users": {
-    "❌ [GET|AUTH] /me": "get my profile",
-    "❌ [PUT|AUTH] /me": "update my profile",
-    "❌ [POST|AUTH] /changePassword": "update my password",
-    "❌ [GET|AUTH] /notifications": "get my notifications",
-    "❌ [PUT|AUTH] /seenNotifications": "set notifications seen by notification code"
+    "me": {
+      "✅ [GET|AUTH] /": "get my profile",
+      "❌ [PUT|AUTH] /": "update my profile",
+      "❌ [PUT|AUTH] /settings": "update my settings",
+      "❌ [POST|AUTH] /changePassword": "update my password",
+      "❌ [GET|AUTH] /notifications": "get my notifications",
+      "❌ [PUT|AUTH] /seenNotifications": "set notifications seen by notification code",
+      "❌ [GET|AUTH] /seenNotifications": "get all my seen notifications"
+    }
   }
 }

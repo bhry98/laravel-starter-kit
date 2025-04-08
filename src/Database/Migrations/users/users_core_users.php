@@ -74,6 +74,8 @@ return new class extends Migration {
                     ->unique();
                 $table->timestamp(column: 'email_verified_at')
                     ->nullable();
+                $table->boolean(column: 'must_change_password')
+                    ->default(value: true);
                 $table->string(column: 'password')
                     ->nullable();
                 $table->rememberToken();

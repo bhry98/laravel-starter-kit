@@ -35,12 +35,14 @@ class UsersCoreUsersModel extends Authentication
         "username",
         "email",
         "email_verified_at",
+        "must_change_password",
         "password",
     ];
     protected $casts = [
         "email_verified_at" => "datetime",
         "password" => "hashed",
         "remember_token" => "string",
+        "must_change_password" => "boolean",
         "birthdate" => "date:Y-m-d",
         "national_id" => "integer",
         "created_at" => "datetime",
@@ -99,7 +101,6 @@ class UsersCoreUsersModel extends Authentication
             $model->code = self::generateNewCode();
         });
     }
-
     static function generateNewCode(): string
     {
         $code = Str::uuid();
@@ -108,7 +109,6 @@ class UsersCoreUsersModel extends Authentication
         }
         return $code;
     }
-
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *users
@@ -118,7 +118,6 @@ class UsersCoreUsersModel extends Authentication
     {
         return $this->getKey();
     }
-
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *
@@ -128,5 +127,4 @@ class UsersCoreUsersModel extends Authentication
     {
         return [];
     }
-
 }

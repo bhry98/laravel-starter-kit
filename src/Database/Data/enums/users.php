@@ -8,7 +8,7 @@ return [
             'can_delete' => false,
             'parent_id' => null,
             'locales' => [
-                'ar' => "مستخحدم مسؤول",
+                'ar' => "مستخدم مسؤول",
                 "en" => "Administrator",
             ]
         ],

@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             "national_id" => $this->national_id,
             "birthdate" => $this->birthdate ? bhry98_date_formatted($this->birthdate) : null,
             "phone_number" => $this->phone_number,
+            "must_change_password" => $this->must_change_password,
             "country" =>CountryResource::make($this->whenLoaded(relationship: 'country')),
             "governorate" =>GovernorateResource::make($this->whenLoaded(relationship: 'governorate')),
             "city" =>CityResource::make($this->whenLoaded(relationship: 'city')),

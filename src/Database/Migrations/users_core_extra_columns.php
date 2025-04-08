@@ -1,12 +1,15 @@
 <?php
 
-use Bhry98\LaravelUsersCore\Models\{
-    UsersExtraColumnsModel,
-    UsersCoreTypesModel
-};
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Bhry98\LaravelStarterKit\Models\users\{
+    UsersExtraColumnsModel
+};
+use Bhry98\LaravelStarterKit\Models\core\enums\{
+    CoreEnumsModel
+};
 
 return new class extends Migration {
 
@@ -18,15 +21,15 @@ return new class extends Migration {
             callback: function (Blueprint $table) {
                 $table->id();
                 $table->uuid(column: 'code')->unique();
+                $table->boolean(column: 'required')->default(value: false);
+                $table->string(column: 'type')->default(value: 'text');
+                $table->json(column: 'validations')->nullable();
                 $table->foreignId(column: 'type_id')
                     ->references(column: 'id')
-                    ->on(table: UsersCoreTypesModel::TABLE_NAME)
+                    ->on(table: CoreEnumsModel::TABLE_NAME)
                     ->cascadeOnUpdate()
                     ->cascadeOnDelete();
-                $table->string(column: 'defualt_input_name', length: 50);
-                $table->json(column: 'input_names')->nullable();
-                $table->json(column: 'validation')->nullable();
-                $table->softDeletes();
+              $table->softDeletes();
                 $table->timestamps();
             });
         Schema::enableForeignKeyConstraints();

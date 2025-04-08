@@ -62,6 +62,9 @@ class Bhry98StarterKitServiceProvider extends ServiceProvider
     {
         // set auth model in auth.php
         config()->set('auth.providers.users.model', config(key: self::CONFIG_FILE_NAME . ".config.auth.user_model", default: UsersCoreUsersModel::class));
+        // set mail.php
+        config()->set('mail.mailers.smtp', config(key: self::CONFIG_FILE_NAME . ".config.mail.smtp"));
+        config()->set('mail.from', config(key: self::CONFIG_FILE_NAME . ".config.mail.from"));
         // set session table in session.php
         config()->set('session.table', CoreSessionsModel::TABLE_NAME);
         // Overriding Default Personal Access Token Models
